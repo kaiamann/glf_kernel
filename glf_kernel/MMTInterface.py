@@ -9,7 +9,7 @@ from IPython.utils.tempdir import TemporaryDirectory
 from .utils import get_args, generate_port, create_nested_dir
 
 # TODO maybe introduce env variables for this or get Florian to introduce a MMT-Path
-MMT_LOCATION = join(expanduser('~'), 'MMT')
+MMT_LOCATION = join(expanduser('~'), 'mmt', 'systems', 'MMT')
 GLF_BUILD_EXTENSION = 'info.kwarc.mmt.glf.GlfBuildServer'
 GLF_CONSTRUCT_EXTENSION = 'info.kwarc.mmt.glf.GlfConstructServer'
 
@@ -22,7 +22,7 @@ class MMTInterface():
     def __init__(self):
         self.content_path = do_get_content_path()
         # set COMMA/JUPYTER as default archive
-        self.archive = 'comma/jupyter'
+        self.archive = 'Teaching/lbs1920'
         self.subdir = ''
         self.view = None
        
@@ -83,7 +83,7 @@ class MMTInterface():
 
             with open(join(archive_path, 'META-INF', 'MANIFEST.MF'), 'w+') as f:
                 f.write('id: %s\nnarration-base: http://mathhub.info/%s' %
-                        (name.upper(), name.upper()))
+                        (name, name))
                 f.close()
             
             # register the archive in MMT
@@ -136,7 +136,7 @@ class MMTInterface():
         """
         # for some reason MMT archives have to be in upper-case when building them
         j = {
-            'archive': self.archive.upper(),
+            'archive': self.archive,
             'file': os.path.join(self.subdir, file_name)
         }
         resp = requests.post('http://localhost:%s/:glf-build' %
@@ -166,7 +166,7 @@ class MMTInterface():
         try:
             with io.open(file_path, 'w', encoding='utf-8',) as f:
                 f.write('namespace http://mathhub.info/%s ❚\n\n' %
-                        self.archive.upper())
+                        self.archive)
                 f.write(content)
                 f.close()
             self.view_name = name
@@ -190,7 +190,7 @@ class MMTInterface():
             self.view = v
 
         j = {
-            'semanticsView': 'http://mathhub.info/%s/%s' % (self.archive.upper(), self.view),
+            'semanticsView': 'http://mathhub.info/%s/%s' % (self.archive, self.view),
             'ASTs': ASTs
         }
         try:
