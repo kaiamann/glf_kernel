@@ -121,7 +121,7 @@ define([
                                                 if (stream.match(MMTKeywords) || stream.match(MMTDefiners)) return "keyword";
                         
                                                 // Handle single line MMT comments
-                                                if (stream.match(/\\T/) || stream.match(/\/\//)) {
+                                                if (stream.match(/\/T/) || stream.match(/\/\//)) {
                                                         stream.skipToEnd();
                                                         return "comment";
                                                 }
