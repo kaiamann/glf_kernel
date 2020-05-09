@@ -1,3 +1,19 @@
+# NOTE
+
+The GLF kernel has been extended by an inference component,
+and is now called GLIF kernel.
+You may want to check out [the GLIF kernel's repository](https://github.com/kwarc/GLIF),
+as its functionality subsumes the GLF kernel.
+
+You can test the GLIF kernel online at at mybinder.org:
+[https://mybinder.org/v2/gh/jfschaefer/GlifBinder/master](https://mybinder.org/v2/gh/jfschaefer/GlifBinder/master).
+Note that it may take a minute to launch.
+
+You can also try to run the kernel locally via docker. By default, you get the Jupyter Lab interface.
+
+    docker run -p 8888:8888 jfschaefer/glif:1.0
+
+
 GLF Kernel
 ==========
 
